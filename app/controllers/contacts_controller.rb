@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     render json: {
-      contacts: user.contacts
+      contacts: user.contacts,
       shared:   user.shared_contacts
     }
   end
@@ -19,7 +19,14 @@ class ContactsController < ApplicationController
   end
 
   def show
-    render json: Contact.find(params[:id])
+    contact = Contact.find(params[:id])
+    render json: {
+      contact: contact,
+      user: contact.owner,
+      shared: contact.shared_users,
+      groups: contact.groups,
+      comments: contact.comments
+    }
   end
 
   def update

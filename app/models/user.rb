@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   # Groups
   has_many :group_follows
   has_many :groups, through: :group_follows, source: :group
+
+  # Comment
+  has_many :comments, as: :commentable
 end

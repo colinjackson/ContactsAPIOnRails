@@ -20,8 +20,9 @@ class UsersController < ApplicationController
     render json: {
       user: user,
       groups: user.groups,
-      contacts: user.contacts
-      shared: user.shared_contacts
+      contacts: user.contacts,
+      shared: user.shared_contacts,
+      comments: user.comments
     }
   end
 

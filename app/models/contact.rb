@@ -13,4 +13,7 @@ class Contact < ActiveRecord::Base
   # Group
   has_many :contact_groupings
   has_many :groups, through: :contact_groupings, source: :group
+
+  # Comment
+  has_many :comments, as: :commentable
 end
