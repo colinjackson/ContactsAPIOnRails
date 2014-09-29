@@ -5,4 +5,6 @@ Contacts::Application.routes.draw do
 
   resources :contacts, only: [:create, :destroy, :show, :update]
   resources :contact_shares, only: [:create, :destroy]
+
+  resources :groups, only: [:index, :show]
 end

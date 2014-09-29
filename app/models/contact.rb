@@ -9,4 +9,8 @@ class Contact < ActiveRecord::Base
 
   has_many :contact_shares, dependent: :destroy
   has_many :shared_users, through: :contact_shares, source: :user
+
+  # Group
+  has_many :contact_groupings
+  has_many :groups, through: :contact_groupings, source: :group
 end

@@ -16,7 +16,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: User.find(params[:id])
+    user = User.find(params[:id])
+    render json: {
+      user: user,
+      groups: user.groups,
+      contacts: user.contacts
+      shared: user.shared_contacts
+    }
   end
 
   def update

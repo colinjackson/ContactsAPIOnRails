@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929183703) do
+ActiveRecord::Schema.define(version: 20140929200948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contact_groupings", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_groupings", ["contact_id"], name: "index_contact_groupings_on_contact_id", using: :btree
+  add_index "contact_groupings", ["group_id", "contact_id"], name: "index_contact_groupings_on_group_id_and_contact_id", unique: true, using: :btree
+  add_index "contact_groupings", ["group_id"], name: "index_contact_groupings_on_group_id", using: :btree
 
   create_table "contact_shares", force: true do |t|
     t.integer  "contact_id", null: false
@@ -37,6 +48,23 @@ ActiveRecord::Schema.define(version: 20140929183703) do
 
   add_index "contacts", ["email", "user_id"], name: "index_contacts_on_email_and_user_id", unique: true, using: :btree
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
+
+  create_table "group_follows", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_follows", ["group_id"], name: "index_group_follows_on_group_id", using: :btree
+  add_index "group_follows", ["user_id", "group_id"], name: "index_group_follows_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "group_follows", ["user_id"], name: "index_group_follows_on_user_id", using: :btree
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
