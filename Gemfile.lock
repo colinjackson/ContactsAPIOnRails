@@ -90,8 +90,6 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
-    rename (1.0.2)
-      rails (>= 3.0.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     sass (3.2.19)
@@ -140,7 +138,6 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.0.2)
-  rename
   rest-client
   sass-rails (~> 4.0.0)
   sdoc
