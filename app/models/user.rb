@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   # Comment
   has_many :comments, as: :commentable
+
+  def favorites
+    (contacts + shared_contacts).uniq.select(&:favorite)
+  end
 end
