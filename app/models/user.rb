@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   def favorites
-    (contacts + shared_contacts).uniq.select(&:favorite)
+    fav_shares = contact_shares.select(&:favorite).map(&:contact)
+    fav_contacts = contacts.select(&:favorite)
+    (fav_contacts + fav_shares).uniq
   end
 end
